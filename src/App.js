@@ -1,24 +1,25 @@
-import logo from './logo.svg';
+import {useState} from "react";
+import Header from "./Header";
 import './App.css';
+import List from "./List";
+
+const URL = "http://localhost/todolist/";
+
+
 
 function App() {
+  const [searchCriteria, setSearchCriteria] = useState(null);
+
+  function search(criteria) {
+   // console.log(criteria);
+    setSearchCriteria(criteria);
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Header search={search} />
+      <List URL={URL} criteria={searchCriteria}/>
+    </>
   );
 }
 
